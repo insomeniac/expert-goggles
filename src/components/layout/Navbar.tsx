@@ -189,120 +189,135 @@ export function Navbar() {
         closeTimer.current = setTimeout(() => setOpenIndex(null), 120)
     }
 
+    const isSolid = scrolled || mobileOpen
+
     return (
         <header
             className={cn(
-                "fixed top-0 z-50 w-full transition-all duration-300",
-                scrolled
-                    ? "border-b border-border/80 bg-background/80 backdrop-blur-md py-3"
-                    : "border-transparent bg-background py-6",
+                "fixed top-0 z-50 w-full py-3",
+                isSolid
+                    ? "border-b border-border bg-background shadow-sm"
+                    : "border-transparent bg-transparent transition-colors duration-300",
             )}
         >
-            <div className="mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 max-w-7xl">
-                {/* Logo */}
-                <Link href="/" className="flex items-center gap-2" aria-label="Exantara home">
-                    <div className="relative w-32 h-8">
-                        <Image
-                            src="/exantara-logo.png"
-                            alt="Exantara"
-                            fill
-                            className="object-contain object-left brightness-0"
-                            priority
-                        />
-                    </div>
-                </Link>
+            <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
+                <div className="flex items-center gap-6 lg:gap-10">
+                    {/* Logo */}
+                    <Link href="/" className="flex items-center gap-2" aria-label="Exantara home">
+                        <div className="relative w-32 h-8">
+                            <Image
+                                src="/exantara-logo.png"
+                                alt="Exantara"
+                                fill
+                                className={cn("object-contain object-left", isSolid ? "brightness-0" : "")}
+                                priority
+                            />
+                        </div>
+                    </Link>
 
-                {/* Desktop nav */}
-                <nav
-                    className="hidden lg:flex lg:items-center lg:gap-1"
-                    onMouseLeave={handleLeave}
-                    aria-label="Primary"
-                >
-                    {NAV_ITEMS.map((item, index) => {
-                        if (item.type === "link") {
-                            return (
-                                <Link
-                                    key={item.label}
-                                    href={item.href}
-                                    onMouseEnter={() => handleEnter(-1)}
-                                    className="rounded-md px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
-                                >
-                                    {item.label}
-                                </Link>
-                            )
-                        }
-
-                        const isOpen = openIndex === index
-                        return (
-                            <div
-                                key={item.label}
-                                className="relative"
-                                onMouseEnter={() => handleEnter(index)}
-                            >
-                                <button
-                                    type="button"
-                                    aria-expanded={isOpen}
-                                    aria-haspopup="menu"
-                                    className={cn(
-                                        "inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors focus:outline-none",
-                                        isOpen ? "text-foreground" : "text-foreground/80 hover:text-foreground",
-                                    )}
-                                >
-                                    {item.label}
-                                    <ChevronDown
+                    {/* Desktop nav */}
+                    <nav
+                        className="hidden lg:flex lg:items-center lg:gap-1"
+                        onMouseLeave={handleLeave}
+                        aria-label="Primary"
+                    >
+                        {NAV_ITEMS.map((item, index) => {
+                            if (item.type === "link") {
+                                return (
+                                    <Link
+                                        key={item.label}
+                                        href={item.href}
+                                        onMouseEnter={() => handleEnter(-1)}
                                         className={cn(
-                                            "h-3.5 w-3.5 transition-transform duration-200",
-                                            isOpen && "rotate-180",
+                                            "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-foreground",
+                                            !isSolid ? "text-white/80 hover:text-white" : "text-foreground/80 hover:text-foreground"
                                         )}
-                                    />
-                                </button>
+                                    >
+                                        {item.label}
+                                    </Link>
+                                )
+                            }
 
-                                <AnimatePresence>
-                                    {isOpen && (
-                                        <motion.div
-                                            initial={{ opacity: 0, y: 6 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: 6 }}
-                                            transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                            const isOpen = openIndex === index
+                            return (
+                                <div
+                                    key={item.label}
+                                    className="relative"
+                                    onMouseEnter={() => handleEnter(index)}
+                                >
+                                    <button
+                                        type="button"
+                                        aria-expanded={isOpen}
+                                        aria-haspopup="menu"
+                                        className={cn(
+                                            "inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors focus:outline-none",
+                                            !isSolid
+                                                ? (isOpen ? "text-white" : "text-white/80 hover:text-white")
+                                                : (isOpen ? "text-foreground" : "text-foreground/80 hover:text-foreground")
+                                        )}
+                                    >
+                                        {item.label}
+                                        <ChevronDown
                                             className={cn(
-                                                "absolute left-1/2 top-full -translate-x-1/2 pt-3",
-                                                item.type === "megamenu" ? "w-[820px]" : "w-[420px]",
+                                                "h-3.5 w-3.5 transition-transform duration-200",
+                                                isOpen && "rotate-180",
                                             )}
-                                            role="menu"
-                                        >
-                                            <div className="overflow-hidden rounded-xl border border-border bg-popover text-popover-foreground shadow-xl shadow-black/5">
-                                                {item.type === "megamenu" ? (
-                                                    <div className="grid grid-cols-2 gap-1 p-3">
-                                                        {item.items.map((sub) => (
-                                                            <DropdownLink key={sub.label} item={sub} />
-                                                        ))}
-                                                    </div>
-                                                ) : (
-                                                    <div className="flex flex-col p-2">
-                                                        {item.items.map((sub) => (
-                                                            <DropdownLink key={sub.label} item={sub} />
-                                                        ))}
-                                                    </div>
+                                        />
+                                    </button>
+
+                                    <AnimatePresence>
+                                        {isOpen && (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 6 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: 6 }}
+                                                transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                                                className={cn(
+                                                    "absolute left-1/2 top-full -translate-x-1/2 pt-3",
+                                                    item.type === "megamenu" ? "w-[820px]" : "w-[420px]",
                                                 )}
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </div>
-                        )
-                    })}
-                </nav>
+                                                role="menu"
+                                            >
+                                                <div className="overflow-hidden rounded-xl border border-border bg-popover text-popover-foreground shadow-xl shadow-black/5">
+                                                    {item.type === "megamenu" ? (
+                                                        <div className="grid grid-cols-2 gap-1 p-3">
+                                                            {item.items.map((sub) => (
+                                                                <DropdownLink key={sub.label} item={sub} />
+                                                            ))}
+                                                        </div>
+                                                    ) : (
+                                                        <div className="flex flex-col p-2">
+                                                            {item.items.map((sub) => (
+                                                                <DropdownLink key={sub.label} item={sub} />
+                                                            ))}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                            )
+                        })}
+                    </nav>
+                </div>
 
                 {/* Right CTAs */}
                 <div className="hidden items-center gap-6 lg:flex">
                     <Link
                         href="#demo"
-                        className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+                        className={cn(
+                            "text-sm font-medium transition-all hover:underline underline-offset-4",
+                            !isSolid ? "text-white" : "text-foreground"
+                        )}
                     >
                         Demo
                     </Link>
                     <Button
-                        className="inline-flex items-center rounded-full bg-foreground px-6 h-10 text-sm font-bold text-background transition-opacity hover:opacity-90 shadow-none"
+                        className={cn(
+                            "inline-flex items-center rounded-full px-6 h-10 text-sm font-bold shadow-none transition-all",
+                            !isSolid ? "bg-white text-black hover:bg-white/90" : "bg-foreground text-background hover:bg-foreground/90"
+                        )}
                     >
                         Request Consultation
                     </Button>
@@ -314,7 +329,10 @@ export function Navbar() {
                     aria-label="Toggle menu"
                     aria-expanded={mobileOpen}
                     onClick={() => setMobileOpen((v) => !v)}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground lg:hidden focus:outline-none"
+                    className={cn(
+                        "inline-flex h-10 w-10 items-center justify-center rounded-md lg:hidden focus:outline-none",
+                        !isSolid ? "text-white" : "text-foreground"
+                    )}
                 >
                     {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                 </button>
@@ -353,12 +371,12 @@ export function Navbar() {
                                     <Link
                                         href="#demo"
                                         onClick={() => setMobileOpen(false)}
-                                        className="rounded-md px-3 py-3 text-center text-sm font-medium text-foreground/80"
+                                        className="rounded-full border border-border px-3 py-3 w-full text-center text-sm font-bold text-foreground hover:bg-accent transition-colors"
                                     >
                                         Demo
                                     </Link>
                                     <Button
-                                        className="rounded-full bg-foreground px-4 h-12 text-center text-sm font-bold text-background"
+                                        className="rounded-full bg-foreground px-4 h-12 text-center text-sm font-bold text-background transition-all hover:bg-foreground/90 shadow-none"
                                     >
                                         Request Consultation
                                     </Button>
@@ -368,7 +386,7 @@ export function Navbar() {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </header>
+        </header >
     )
 }
 
