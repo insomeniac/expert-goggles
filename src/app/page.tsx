@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/Navbar";
-import { Footer, FinalCTA } from "@/components/layout/Footer";
+import { Footer } from "@/components/layout/Footer";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Hero } from "@/components/sections/Hero";
 import { BrandPositioning } from "@/components/sections/BrandPositioning";
 import { MainServicesPreview } from "@/components/sections/MainServicesPreview";

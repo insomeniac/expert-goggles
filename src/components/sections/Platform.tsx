@@ -1,119 +1,156 @@
 "use client";
 
-import React from "react";
-import { Globe, Store, BrainCircuit, LayoutDashboard, CheckCircle2 } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent } from "@/components/ui/card";
+import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useRef } from "react";
+import { Globe, Store, BrainCircuit, LayoutDashboard } from "lucide-react";
 
 const modules = [
     {
         id: "website",
         title: "Commerce Website",
-        icon: <Globe className="w-5 h-5" />,
+        icon: <Globe className="w-4 h-4" />,
         description: "Website modern dengan premium UI/UX, mobile-first architecture, dan SEO-ready structure.",
         features: ["Premium UI/UX", "SEO-ready architecture", "Mobile-first experience", "Fast performance", "Conversion-focused layout"],
-        image: "/api/placeholder/600/400"
+        image: "/images/platform/website.png"
     },
     {
         id: "pos",
         title: "Smart POS",
-        icon: <Store className="w-5 h-5" />,
+        icon: <Store className="w-4 h-4" />,
         description: "Sistem POS modern untuk operasional yang lebih efisien dan terintegrasi.",
         features: ["Real-time synchronization", "Multi-branch management", "Inventory management", "Customer management", "Sales analytics"],
-        image: "/api/placeholder/600/400"
+        image: "/images/platform/pos.png"
     },
     {
         id: "ai",
         title: "AI Commerce",
-        icon: <BrainCircuit className="w-5 h-5" />,
+        icon: <BrainCircuit className="w-4 h-4" />,
         description: "AI-powered ecosystem untuk automation, analytics, dan business intelligence.",
         features: ["Predictive analytics", "AI automation", "AI recommendation", "Customer intelligence", "Business insights"],
-        image: "/api/placeholder/600/400"
+        image: "/images/platform/ai.png"
     },
     {
         id: "analytics",
         title: "Analytics Dashboard",
-        icon: <LayoutDashboard className="w-5 h-5" />,
+        icon: <LayoutDashboard className="w-4 h-4" />,
         description: "Dashboard realtime untuk monitoring performa bisnis dan growth analytics.",
         features: ["Realtime reporting", "Traffic analytics", "Sales performance", "Conversion tracking", "Operational insights"],
-        image: "/api/placeholder/600/400"
+        image: "/images/platform/analytics.png"
     }
 ];
 
-export function Platform() {
+const StickyCard = ({
+    title,
+    description,
+    features,
+    image,
+    progress,
+    range,
+    targetScale,
+    i
+}: any) => {
+    const container = useRef<HTMLDivElement>(null);
+    const scale = useTransform(progress, range, [1, targetScale]);
+
     return (
-        <section id="platform" className="py-24 bg-muted/20">
-            <div className="container mx-auto px-4 md:px-6">
-                <div className="text-center max-w-3xl mx-auto mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
-                        Unified Commerce Growth Platform
-                    </h2>
-                    <p className="text-lg text-muted-foreground">
-                        Satu ecosystem modern untuk website, commerce, SEO, AI, analytics, dan operational growth.
-                    </p>
+        <div
+            ref={container}
+            className="sticky top-[15vh] flex items-center justify-center mb-10"
+        >
+            <motion.div
+                style={{
+                    scale,
+                    top: `calc(-5vh + ${i * 40}px)`,
+                }}
+                className="grid lg:grid-cols-[1.2fr_1fr] gap-10 items-center bg-zinc-950 rounded-3xl p-8 md:p-10 border border-zinc-900 relative overflow-hidden w-full shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)]"
+            >
+                <div className="space-y-8 relative z-10 text-left">
+                    <div className="space-y-3">
+                        <h3 className="text-2xl md:text-3xl font-medium text-white">{title}</h3>
+                        <p className="text-base text-zinc-500 leading-relaxed max-w-md">
+                            {description}
+                        </p>
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 gap-y-4 gap-x-8 text-zinc-500">
+                        {features.map((f: string, idx: number) => (
+                            <div key={idx} className="flex items-center gap-3">
+                                <div className="w-1 h-1 rounded-full bg-blue-500 shrink-0" />
+                                <span className="text-sm">{f}</span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
-                <Tabs defaultValue="website" className="w-full">
-                    <TabsList className="grid grid-cols-2 md:grid-cols-4 w-full h-auto p-1 bg-background border border-border rounded-xl mb-12">
-                        {modules.map((m) => (
-                            <TabsTrigger
-                                key={m.id}
-                                value={m.id}
-                                className="py-4 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground flex flex-col md:flex-row items-center gap-2"
-                            >
-                                {m.icon}
-                                <span className="font-semibold">{m.title}</span>
-                            </TabsTrigger>
-                        ))}
-                    </TabsList>
+                <div className="relative overflow-hidden rounded-2xl border border-zinc-900 bg-zinc-900 h-[280px] md:h-[320px]">
+                    <img
+                        src={image}
+                        alt={title}
+                        className="w-full h-full object-cover transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                </div>
+            </motion.div>
+        </div>
+    );
+};
 
-                    {modules.map((m) => (
-                        <TabsContent key={m.id} value={m.id} className="mt-0">
-                            <div className="grid lg:grid-cols-2 gap-12 items-center bg-background rounded-3xl p-8 md:p-12 border border-border shadow-2xl shadow-primary/5">
-                                <div className="space-y-8">
-                                    <h3 className="text-3xl font-bold">{m.title}</h3>
-                                    <p className="text-xl text-muted-foreground leading-relaxed">
-                                        {m.description}
-                                    </p>
-                                    <div className="grid sm:grid-cols-2 gap-4">
-                                        {m.features.map((f, i) => (
-                                            <div key={i} className="flex items-center gap-3">
-                                                <div className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                                                    <CheckCircle2 size={14} />
-                                                </div>
-                                                <span className="font-medium">{f}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div className="relative group overflow-hidden rounded-2xl border border-border/50">
-                                    <img
-                                        src={m.image}
-                                        alt={m.title}
-                                        className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
-                                </div>
-                            </div>
-                        </TabsContent>
-                    ))}
-                </Tabs>
+export function Platform() {
+    const container = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: container,
+        offset: ["start start", "end end"],
+    });
 
-                <div className="mt-20 p-8 md:p-12 rounded-3xl bg-primary text-primary-foreground overflow-hidden relative group">
-                    <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-                    <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-                        <div className="max-w-2xl">
-                            <h3 className="text-2xl md:text-3xl font-bold mb-4">Membangun fondasi digital yang scalable</h3>
-                            <p className="text-lg opacity-90">
-                                Platform Exa Commerce dirancang untuk membantu bisnis meningkatkan branding, efisiensi operasional, customer experience, dan visibility secara simultan.
+    return (
+        <section id="platform" ref={container} className="relative z-20 bg-[#030303] pb-24">
+            <div className="container mx-auto px-4 md:px-6 pt-24 mb-[20vh]">
+                <div className="text-center max-w-2xl mx-auto">
+                    <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white mb-6">
+                        Unified Growth Platform
+                    </h2>
+                    <p className="text-sm sm:text-base text-zinc-500 max-w-xl mx-auto leading-relaxed font-light">
+                        Satu ekosistem terpadu untuk mengelola website, commerce, operasional, dan kecerdasan buatan secara simultan.
+                    </p>
+                </div>
+            </div>
+
+            <div className="container mx-auto px-4 md:px-6">
+                {modules.map((module, i) => {
+                    const targetScale = 1 - ((modules.length - i - 1) * 0.05);
+                    return (
+                        <StickyCard
+                            key={module.id}
+                            i={i}
+                            {...module}
+                            progress={scrollYProgress}
+                            range={[i * 0.2, 1]}
+                            targetScale={targetScale}
+                        />
+                    );
+                })}
+            </div>
+
+            {/* Scroll Buffer Spacer */}
+            <div className="h-[20vh] w-full" />
+
+            <div className="container mx-auto px-4 md:px-6">
+                <div className="p-8 md:p-12 rounded-[2.5rem] bg-zinc-950 border border-zinc-900 overflow-hidden relative group text-center lg:text-left">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,#3b82f608,transparent_70%)]" />
+
+                    <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-10">
+                        <div className="max-w-xl">
+                            <h3 className="text-2xl md:text-3xl font-medium text-white mb-4">Membangun fondasi digital yang scalable</h3>
+                            <p className="text-sm sm:text-base text-zinc-500 leading-relaxed font-light">
+                                Platform Exantra dirancang untuk membantu bisnis meningkatkan branding, efisiensi operasional, customer experience, dan visibility secara simultan.
                             </p>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-4 shrink-0">
-                            <button className="px-8 py-3 bg-white text-primary font-bold rounded-full hover:bg-opacity-90 transition-all shadow-lg">
+                            <button className="px-10 py-4 bg-white text-black font-semibold rounded-full hover:bg-zinc-200 transition-all text-sm">
                                 View Details
                             </button>
-                            <button className="px-8 py-3 bg-primary-foreground/10 border border-white/20 font-bold rounded-full hover:bg-white/10 transition-all">
-                                Download Brochure
+                            <button className="px-10 py-4 bg-zinc-900 border border-zinc-800 text-white font-medium rounded-full hover:bg-zinc-800 transition-all text-sm">
+                                Download Roadmap
                             </button>
                         </div>
                     </div>

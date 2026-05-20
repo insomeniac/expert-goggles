@@ -1,109 +1,98 @@
-"use client";
-
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Mail, Phone, MapPin, Globe, MessageSquare, Share2, Link2 } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
-
-export function FinalCTA() {
-    return (
-        <section className="py-24 relative overflow-hidden">
-            <div className="absolute inset-0 bg-primary/5 -z-10" />
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-
-            <div className="container mx-auto px-4 md:px-6 text-center">
-                <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8">
-                    Ready to Build Modern <br /> Commerce Infrastructure?
-                </h2>
-                <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
-                    Bergabunglah dengan ratusan bisnis yang telah mengtransformasi operasional dan mempercepat pertumbuhan mereka bersama Exa Commerce.
-                </p>
-
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <Button size="lg" className="rounded-full px-10 h-14 text-lg font-bold shadow-2xl shadow-primary/20 group">
-                        Request Consultation
-                        <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                    <Button size="lg" variant="outline" className="rounded-full px-10 h-14 text-lg font-bold">
-                        Schedule Discussion
-                    </Button>
-                </div>
-            </div>
-        </section>
-    );
-}
+import Image from "next/image";
 
 export function Footer() {
     return (
-        <footer className="bg-background border-t border-border pt-20 pb-10">
+        <footer className="bg-[#030303] border-t border-zinc-900 pt-24 pb-12 text-white">
             <div className="container mx-auto px-4 md:px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-                    <div className="space-y-6">
-                        <Link href="/" className="flex items-center gap-2">
-                            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                                <span className="text-primary-foreground font-bold text-lg">E</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
+                    <div className="space-y-8">
+                        <Link href="/" className="flex items-center gap-3">
+                            <div className="relative w-32 h-10">
+                                <Image
+                                    src="/exantara-logo.png"
+                                    alt="ExantaraLogo"
+                                    fill
+                                    className="object-contain object-left"
+                                />
                             </div>
-                            <span className="font-bold text-xl tracking-tight">EXA COMMERCE</span>
                         </Link>
-                        <p className="text-muted-foreground text-sm leading-relaxed">
-                            AI-Powered Commerce Growth Infrastructure. Kami membangun masa depan commerce dengan teknologi cerdas dan operasional yang efisien.
+                        <p className="text-zinc-500 text-sm leading-relaxed max-w-xs font-light">
+                            AI-Powered Commerce Infrastructure. Membangun masa depan perdagangan digital melalui teknologi cerdas dan desain yang presisi.
                         </p>
                         <div className="flex items-center gap-4">
-                            {[Globe, MessageSquare, Share2, Link2].map((Icon, i) => (
-                                <Link key={i} href="#" className="w-8 h-8 rounded-full border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all">
-                                    <Icon size={16} />
+                            {[
+                                {
+                                    name: "X",
+                                    svg: <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+                                },
+                                {
+                                    name: "Instagram",
+                                    svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+                                },
+                                {
+                                    name: "LinkedIn",
+                                    svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                },
+                                {
+                                    name: "YouTube",
+                                    svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 2-2 10.84 10.84 0 0 1 15 0 2 2 0 0 1 2 2 24.12 24.12 0 0 1 0 10 2 2 0 0 1-2 2 10.84 10.84 0 0 1-15 0 2 2 0 0 1-2-2z"></path><path d="m10 15 5-3-5-3z"></path></svg>
+                                }
+                            ].map((social, i) => (
+                                <Link key={i} href="#" aria-label={social.name} className="w-10 h-10 rounded-full border border-zinc-900 flex items-center justify-center text-zinc-600 hover:text-white hover:border-zinc-700 transition-all">
+                                    {social.svg}
                                 </Link>
                             ))}
                         </div>
                     </div>
 
-                    <div>
-                        <h4 className="font-bold mb-6">Platform</h4>
-                        <ul className="space-y-4 text-sm text-muted-foreground">
-                            <li><Link href="#platform" className="hover:text-primary transition-colors">Commerce Website</Link></li>
-                            <li><Link href="#platform" className="hover:text-primary transition-colors">Smart POS</Link></li>
-                            <li><Link href="#platform" className="hover:text-primary transition-colors">AI Commerce</Link></li>
-                            <li><Link href="#platform" className="hover:text-primary transition-colors">Analytics</Link></li>
-                            <li><Link href="#platform" className="hover:text-primary transition-colors">Automation</Link></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="font-bold mb-6">Services</h4>
-                        <ul className="space-y-4 text-sm text-muted-foreground">
-                            <li><Link href="#services" className="hover:text-primary transition-colors">Website Development</Link></li>
-                            <li><Link href="#services" className="hover:text-primary transition-colors">SEO Management</Link></li>
-                            <li><Link href="#services" className="hover:text-primary transition-colors">SEM Management</Link></li>
-                            <li><Link href="#services" className="hover:text-primary transition-colors">Commerce Consultation</Link></li>
-                            <li><Link href="#services" className="hover:text-primary transition-colors">Growth Optimization</Link></li>
+                    <div className="space-y-6">
+                        <h4 className="text-sm font-medium text-white">Platform</h4>
+                        <ul className="space-y-4 text-sm text-zinc-500 font-light">
+                            <li><Link href="#platform" className="hover:text-white transition-colors">Commerce Website</Link></li>
+                            <li><Link href="#platform" className="hover:text-white transition-colors">Smart POS System</Link></li>
+                            <li><Link href="#platform" className="hover:text-white transition-colors">AI Business Engine</Link></li>
+                            <li><Link href="#platform" className="hover:text-white transition-colors">Enterprise Analytics</Link></li>
                         </ul>
                     </div>
 
                     <div className="space-y-6">
-                        <h4 className="font-bold">Contact Us</h4>
-                        <div className="space-y-4 text-sm text-muted-foreground">
-                            <div className="flex items-start gap-3">
-                                <MapPin size={18} className="shrink-0 text-primary" />
-                                <span>Jakarta, Indonesia <br /> Tech Hub Level 5</span>
+                        <h4 className="text-sm font-medium text-white">Services</h4>
+                        <ul className="space-y-4 text-sm text-zinc-500 font-light">
+                            <li><Link href="#services" className="hover:text-white transition-colors">Digital Strategy</Link></li>
+                            <li><Link href="#services" className="hover:text-white transition-colors">SEO & Growth</Link></li>
+                            <li><Link href="#services" className="hover:text-white transition-colors">Conversion Logic</Link></li>
+                            <li><Link href="#services" className="hover:text-white transition-colors">System Support</Link></li>
+                        </ul>
+                    </div>
+
+                    <div className="space-y-6">
+                        <h4 className="text-sm font-medium text-white">Connect</h4>
+                        <div className="space-y-4 text-sm text-zinc-500 font-light">
+                            <div className="flex items-start gap-4">
+                                <MapPin size={18} className="shrink-0 text-zinc-700" />
+                                <span className="leading-relaxed">Jakarta, Indonesia <br /> Platinum Hub Level 12</span>
                             </div>
-                            <div className="flex items-center gap-3">
-                                <Phone size={18} className="shrink-0 text-primary" />
-                                <span>+62 812 3456 7890</span>
+                            <div className="flex items-center gap-4">
+                                <Phone size={18} className="shrink-0 text-zinc-700" />
+                                <span>+62 21 8291 000</span>
                             </div>
-                            <div className="flex items-center gap-3">
-                                <Mail size={18} className="shrink-0 text-primary" />
-                                <span>hello@exacommerce.com</span>
+                            <div className="flex items-center gap-4">
+                                <Mail size={18} className="shrink-0 text-zinc-700" />
+                                <span>growth@exantara.com</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-                    <p>© 2026 Exa Commerce. All rights reserved.</p>
-                    <div className="flex gap-6">
-                        <Link href="#" className="hover:text-primary">Privacy Policy</Link>
-                        <Link href="#" className="hover:text-primary">Terms of Service</Link>
-                        <Link href="#" className="hover:text-primary">Cookie Settings</Link>
+                <div className="pt-12 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-6 text-[11px] text-zinc-600">
+                    <p>© 2026 Exantara. All Rights Reserved.</p>
+                    <div className="flex gap-8">
+                        <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
+                        <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+                        <Link href="#" className="hover:text-white transition-colors">Cookie Settings</Link>
                     </div>
                 </div>
             </div>

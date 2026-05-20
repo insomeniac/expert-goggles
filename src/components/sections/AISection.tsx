@@ -7,7 +7,7 @@ import BorderGlow from "@/components/ui/BorderGlow";
 
 export function AISection() {
     return (
-        <section id="ai-infrastructure" className="py-24 bg-black text-white overflow-hidden relative">
+        <section id="ai-infrastructure" className="relative z-20 py-24 bg-black text-white overflow-hidden">
             {/* Minimalist Silver Lighting */}
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zinc-700 to-transparent opacity-30" />
             <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zinc-700 to-transparent opacity-30" />
@@ -16,22 +16,22 @@ export function AISection() {
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                     <div className="space-y-10">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 text-xs font-semibold uppercase tracking-widest">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-500 text-[10px] font-medium tracking-wider uppercase">
                             Built-in Intelligence
                         </div>
 
-                        <h2 className="text-4xl md:text-5xl lg:text-7xl font-medium tracking-tighter leading-[1] text-white">
+                        <h2 className="text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight leading-[1.05] text-white">
                             AI as the New <br />
                             <span className="text-zinc-500">Core Infrastructure</span>
                         </h2>
 
-                        <p className="text-lg md:text-xl text-zinc-400 max-w-xl leading-relaxed">
+                        <p className="text-lg md:text-xl text-zinc-400 max-w-xl leading-relaxed font-light">
                             AI bukan sekadar tambahan, melainkan jantung dari ekosistem commerce modern. Kami mengintegrasikan kecerdasan buatan ke setiap lapisan infrastruktur Anda.
                         </p>
 
                         <div className="grid sm:grid-cols-2 gap-4 pt-6">
                             {[
-                                { label: "Predictive Analytics", desc: "Memahami tren pasar sebelum terjadi." },
+                                { label: "Predictive Analytics", desc: "Memahami tren pasar sebelum terjadi secara realtime." },
                                 { label: "Automated Growth", desc: "Optimasi kampanye dan SEO secara otonom." },
                                 { label: "Smart Inventory", desc: "Manajemen stok cerdas berbasis behavior data." },
                                 { label: "Customer Intelligence", desc: "Personalisasi pengalaman belanja skala masif." }
@@ -47,9 +47,9 @@ export function AISection() {
                                     <div className="group p-5 h-full transition-all duration-500">
                                         <div className="flex items-center gap-2 mb-2">
                                             <div className="w-1.5 h-1.5 rounded-full bg-zinc-400 group-hover:bg-white transition-colors" />
-                                            <span className="font-semibold text-zinc-200 group-hover:text-white transition-colors text-sm sm:text-base">{item.label}</span>
+                                            <span className="font-medium text-zinc-200 group-hover:text-white transition-colors text-sm sm:text-base">{item.label}</span>
                                         </div>
-                                        <p className="text-[10px] sm:text-xs text-zinc-500 leading-relaxed uppercase tracking-tight">{item.desc}</p>
+                                        <p className="text-[11px] text-zinc-500 leading-relaxed">{item.desc}</p>
                                     </div>
                                 </BorderGlow>
                             ))}
@@ -73,7 +73,7 @@ export function AISection() {
                                             <Cpu className="w-6 h-6 text-white" />
                                         </div>
                                         <div className="text-right">
-                                            <div className="text-[10px] text-zinc-500 uppercase tracking-widest font-mono">STATUS</div>
+                                            <div className="text-[9px] text-zinc-500 uppercase tracking-widest font-mono">STATUS</div>
                                             <div className="text-sm font-mono text-blue-400">OPTIMIZED</div>
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@ export function AISection() {
 
                                     <div className="pt-6 border-t border-zinc-900">
                                         <h3 className="text-xl font-medium mb-1">Neural Core</h3>
-                                        <p className="text-[11px] text-zinc-500 uppercase tracking-wide leading-tight">Unified backbone of commerce automation.</p>
+                                        <p className="text-[11px] text-zinc-500 leading-tight">Unified backbone of commerce automation infrastructure.</p>
                                     </div>
                                 </div>
                             </Card>
@@ -99,7 +99,7 @@ export function AISection() {
                             <Card className="p-6 sm:p-8 text-left">
                                 <div className="h-full flex flex-col">
                                     <div className="flex justify-between items-center mb-8">
-                                        <h3 className="text-xl font-medium">Analytics</h3>
+                                        <h3 className="text-xl font-medium">Growth Analytics</h3>
                                         <div className="px-2 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-mono">LIVE</div>
                                     </div>
 
@@ -111,7 +111,7 @@ export function AISection() {
                                         ].map((stat, i) => (
                                             <div key={i} className="space-y-2">
                                                 <div className="flex justify-between text-[10px]">
-                                                    <span className="text-zinc-500 uppercase tracking-widest">{stat.label}</span>
+                                                    <span className="text-zinc-500 uppercase tracking-wider">{stat.label}</span>
                                                     <span className="text-white font-mono">{stat.val}</span>
                                                 </div>
                                                 <div className="h-1 w-full bg-zinc-900 rounded-full overflow-hidden">
@@ -123,11 +123,11 @@ export function AISection() {
 
                                     <div className="grid grid-cols-2 gap-4 mt-auto pt-6 border-t border-zinc-900">
                                         <div>
-                                            <div className="text-[8px] text-zinc-500 uppercase tracking-widest font-mono">LATENCY</div>
+                                            <div className="text-[8px] text-zinc-500 uppercase tracking-wider font-mono">LATENCY</div>
                                             <div className="text-lg font-mono text-white">0.02ms</div>
                                         </div>
                                         <div>
-                                            <div className="text-[8px] text-zinc-500 uppercase tracking-widest font-mono">UPTIME</div>
+                                            <div className="text-[8px] text-zinc-500 uppercase tracking-wider font-mono">UPTIME</div>
                                             <div className="text-lg font-mono text-white">99.9%</div>
                                         </div>
                                     </div>
@@ -143,7 +143,7 @@ export function AISection() {
                                         </div>
                                         <div>
                                             <h3 className="text-lg font-medium leading-none">Autonomous</h3>
-                                            <span className="text-[10px] text-zinc-500 font-mono uppercase tracking-widest">Self-Healing</span>
+                                            <span className="text-[10px] text-zinc-500 font-mono tracking-wider uppercase">Self-Healing</span>
                                         </div>
                                     </div>
 
@@ -156,7 +156,7 @@ export function AISection() {
                                             <div key={i} className="relative">
                                                 <div className="absolute -left-[33px] top-0 w-4 h-4 rounded-full bg-black border-2 border-zinc-700" />
                                                 <div className="text-sm font-medium text-white">{step.step}</div>
-                                                <div className="text-[10px] font-mono text-zinc-500 uppercase">{step.status}</div>
+                                                <div className="text-[10px] font-mono text-zinc-600 uppercase">{step.status}</div>
                                             </div>
                                         ))}
                                     </div>
@@ -164,7 +164,7 @@ export function AISection() {
                                     <div className="mt-auto pt-6 border-t border-zinc-900">
                                         <div className="flex items-center gap-2 text-[10px] text-blue-400 font-mono">
                                             <span className="animate-pulse">●</span>
-                                            SCANNING...
+                                            SCANNING ECOSYSTEM...
                                         </div>
                                     </div>
                                 </div>

@@ -41,14 +41,14 @@ const services = [
 
 export function MainServicesPreview() {
     return (
-        <section id="services" className="py-24 bg-black text-white relative overflow-hidden">
+        <section id="services" className="relative z-20 py-24 bg-black text-white overflow-hidden">
             {/* Subtle Silver Glow top border */}
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 
             <div className="container mx-auto px-4 md:px-6">
                 <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-20">
                     <div className="max-w-3xl space-y-6">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 text-xs font-semibold uppercase tracking-widest">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-500 text-[10px] font-medium tracking-wider uppercase">
                             Comprehensive Solution
                         </div>
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1]">

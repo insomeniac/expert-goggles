@@ -6,7 +6,7 @@ import { ArrowRight, Sparkles, Rocket, ShieldCheck, Zap, PlayCircle } from "luci
 
 export function Hero() {
     return (
-        <section id="home" className="relative h-[100dvh] flex items-center pt-16 overflow-hidden">
+        <section id="home" className="sticky top-0 z-0 h-[100dvh] flex items-center pt-16 overflow-hidden">
             {/* Background Video */}
             <div className="absolute inset-0 z-0">
                 <video
@@ -55,18 +55,18 @@ export function Hero() {
 
                     {/* Trust Statement */}
                     <div className="mt-10 sm:mt-16 pt-6 border-t border-white/20 w-full animate-in fade-in duration-1000 delay-500">
-                        <p className="text-[10px] sm:text-xs font-medium text-white/70 uppercase tracking-[0.2em] mb-6">
+                        <p className="text-[10px] sm:text-xs font-medium text-white/50 uppercase tracking-wider mb-6">
                             Built for growing brands & modern retailers
                         </p>
-                        <div className="flex flex-wrap items-center gap-6 sm:gap-10 md:gap-12 text-white/60">
-                            <div className="flex items-center gap-2 font-bold text-base sm:text-lg lg:text-xl tracking-tighter">
-                                <Rocket className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> VENTURE
+                        <div className="flex flex-wrap items-center gap-6 sm:gap-10 md:gap-12 text-white/40">
+                            <div className="flex items-center gap-2 font-semibold text-sm sm:text-base lg:text-lg tracking-tight">
+                                <Rocket className="w-4 h-4" /> Venture
                             </div>
-                            <div className="flex items-center gap-2 font-bold text-base sm:text-lg lg:text-xl tracking-tighter">
-                                <Zap className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> SCALE
+                            <div className="flex items-center gap-2 font-semibold text-sm sm:text-base lg:text-lg tracking-tight">
+                                <Zap className="w-4 h-4" /> Scale
                             </div>
-                            <div className="flex items-center gap-2 font-bold text-base sm:text-lg lg:text-xl tracking-tighter">
-                                <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> TRUSTED
+                            <div className="flex items-center gap-2 font-semibold text-sm sm:text-base lg:text-lg tracking-tight">
+                                <ShieldCheck className="w-4 h-4" /> Trusted
                             </div>
                         </div>
                     </div>
