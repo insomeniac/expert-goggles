@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import {
     Globe,
     Search,
@@ -9,8 +8,8 @@ import {
     BrainCircuit,
     ArrowUpRight
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 
 const services = [
     {
@@ -63,43 +62,56 @@ export function MainServicesPreview() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
                     {services.map((service, i) => (
-                        <div
+                        <SpotlightCard
                             key={i}
-                            className="group p-8 border border-zinc-900 bg-zinc-950/40 hover:bg-zinc-900/60 transition-all duration-500 relative overflow-hidden cursor-default"
+                            className="group p-8 text-left h-full border border-zinc-900 bg-zinc-950 transition-all duration-500 cursor-default"
+                            spotlightColor="rgba(59, 130, 246, 0.12)"
                         >
-                            {/* Hover Accent Line */}
-                            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-                            <div className="relative z-10">
-                                <div className="w-12 h-12 rounded-full border border-zinc-800 flex items-center justify-center mb-10 text-zinc-400 group-hover:text-white group-hover:border-zinc-500 transition-all duration-500">
-                                    {service.icon}
+                            <div className="relative z-10 h-full flex flex-col">
+                                <div className="mb-8">
+                                    <div className="w-12 h-12 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-400 group-hover:text-blue-400 group-hover:border-blue-500/50 transition-all duration-500">
+                                        {service.icon}
+                                    </div>
                                 </div>
-                                <h3 className="text-xl font-semibold mb-4 text-zinc-100 group-hover:text-white transition-colors">
-                                    {service.title}
-                                </h3>
-                                <p className="text-sm sm:text-base text-zinc-500 group-hover:text-zinc-400 leading-relaxed min-h-[80px]">
-                                    {service.description}
-                                </p>
-                                <div className="mt-8 pt-8 border-t border-zinc-900 flex items-center gap-2 text-xs font-bold text-zinc-600 group-hover:text-blue-500 transition-colors">
-                                    Exploration Service <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+
+                                <div className="space-y-4 flex-1">
+                                    <h3 className="text-xl font-medium text-white tracking-tight">
+                                        {service.title}
+                                    </h3>
+                                    <p className="text-sm text-zinc-500 group-hover:text-zinc-400 leading-relaxed">
+                                        {service.description}
+                                    </p>
+                                </div>
+
+                                <div className="mt-8 pt-8 border-t border-zinc-900 flex items-center justify-between group-hover:border-zinc-800 transition-colors">
+                                    <span className="text-xs font-medium text-zinc-600 group-hover:text-zinc-400">
+                                        Learn more
+                                    </span>
+                                    <ArrowUpRight size={16} className="text-zinc-700 group-hover:text-blue-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                                 </div>
                             </div>
-                        </div>
+                        </SpotlightCard>
                     ))}
 
-                    {/* Growth Card - Special appearance */}
-                    <div className="group p-8 bg-zinc-100 text-black flex flex-col justify-between relative overflow-hidden min-h-[300px]">
+                    {/* Growth Card - Metallic Dark Version */}
+                    <div className="group p-8 bg-black border border-zinc-800 flex flex-col justify-between relative overflow-hidden min-h-[300px]">
+                        {/* Subtle Mesh Background Overlay */}
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,#3b82f615,transparent_70%)]" />
+
                         <div className="relative z-10">
-                            <h3 className="text-2xl sm:text-3xl font-bold tracking-tight mb-4 leading-tight">
+                            <h3 className="text-2xl sm:text-3xl font-medium tracking-tight text-white mb-4 leading-tight">
                                 Ready to accelerate your business growth?
                             </h3>
-                            <p className="text-sm sm:text-base text-zinc-600 mb-8">
-                                Bangun infrastruktur commerce modern bersama tim ahli kami sekarang.
+                            <p className="text-sm text-zinc-500 leading-relaxed max-w-[280px]">
+                                Build modern commerce infrastructure with our expert team today.
                             </p>
                         </div>
-                        <Button className="w-full h-12 sm:h-14 rounded-full bg-black text-white hover:bg-zinc-800 transition-all mt-auto font-bold uppercase tracking-wider text-xs">
-                            Schedule Discussion
-                        </Button>
+
+                        <div className="relative z-10 mt-8">
+                            <Button className="w-full h-12 rounded-none bg-white text-black hover:bg-zinc-200 transition-all font-bold text-xs">
+                                Schedule Discussion
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>
