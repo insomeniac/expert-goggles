@@ -195,9 +195,11 @@ export function Navbar() {
         <header
             className={cn(
                 "fixed top-0 z-50 w-full py-3",
-                isSolid
-                    ? "border-b border-border bg-background shadow-sm"
-                    : "border-transparent bg-transparent transition-colors duration-300",
+                mobileOpen
+                    ? "bg-black h-screen lg:h-auto transition-none"
+                    : (scrolled
+                        ? "border-b border-white/10 bg-black/90 backdrop-blur-md shadow-2xl shadow-black/50 transition-all duration-500"
+                        : "border-transparent bg-transparent transition-all duration-500")
             )}
         >
             <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
@@ -209,7 +211,7 @@ export function Navbar() {
                                 src="/exantara-logo.png"
                                 alt="Exantara"
                                 fill
-                                className={cn("object-contain object-left", isSolid ? "brightness-0" : "")}
+                                className="object-contain object-left"
                                 priority
                             />
                         </div>
@@ -229,8 +231,8 @@ export function Navbar() {
                                         href={item.href}
                                         onMouseEnter={() => handleEnter(-1)}
                                         className={cn(
-                                            "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-foreground",
-                                            !isSolid ? "text-white/80 hover:text-white" : "text-foreground/80 hover:text-foreground"
+                                            "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                                            !scrolled ? "text-white/80 hover:text-white" : "text-zinc-400 hover:text-white"
                                         )}
                                     >
                                         {item.label}
@@ -251,9 +253,9 @@ export function Navbar() {
                                         aria-haspopup="menu"
                                         className={cn(
                                             "inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors focus:outline-none",
-                                            !isSolid
+                                            !scrolled
                                                 ? (isOpen ? "text-white" : "text-white/80 hover:text-white")
-                                                : (isOpen ? "text-foreground" : "text-foreground/80 hover:text-foreground")
+                                                : (isOpen ? "text-white" : "text-zinc-400 hover:text-white")
                                         )}
                                     >
                                         {item.label}
@@ -278,7 +280,7 @@ export function Navbar() {
                                                 )}
                                                 role="menu"
                                             >
-                                                <div className="overflow-hidden rounded-xl border border-border bg-popover text-popover-foreground shadow-xl shadow-black/5">
+                                                <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 text-white shadow-2xl shadow-black">
                                                     {item.type === "megamenu" ? (
                                                         <div className="grid grid-cols-2 gap-1 p-3">
                                                             {item.items.map((sub) => (
@@ -306,17 +308,14 @@ export function Navbar() {
                 <div className="hidden items-center gap-6 lg:flex">
                     <Link
                         href="#demo"
-                        className={cn(
-                            "text-sm font-medium transition-all hover:underline underline-offset-4",
-                            !isSolid ? "text-white" : "text-foreground"
-                        )}
+                        className="text-sm font-medium transition-all hover:underline underline-offset-4 text-white"
                     >
                         Demo
                     </Link>
                     <Button
                         className={cn(
                             "inline-flex items-center rounded-full px-6 h-10 text-sm font-bold shadow-none transition-all",
-                            !isSolid ? "bg-white text-black hover:bg-white/90" : "bg-foreground text-background hover:bg-foreground/90"
+                            !scrolled ? "bg-white text-black hover:bg-zinc-200" : "bg-white text-black hover:bg-zinc-200"
                         )}
                     >
                         Request Consultation
@@ -329,12 +328,9 @@ export function Navbar() {
                     aria-label="Toggle menu"
                     aria-expanded={mobileOpen}
                     onClick={() => setMobileOpen((v) => !v)}
-                    className={cn(
-                        "inline-flex h-10 w-10 items-center justify-center rounded-md lg:hidden focus:outline-none",
-                        !isSolid ? "text-white" : "text-foreground"
-                    )}
+                    className="inline-flex h-10 w-10 items-center justify-end rounded-md lg:hidden focus:outline-none text-white"
                 >
-                    {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                    {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                 </button>
             </div>
 
@@ -342,47 +338,45 @@ export function Navbar() {
             <AnimatePresence>
                 {mobileOpen && (
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="lg:hidden"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="lg:hidden bg-black overflow-y-auto max-h-[calc(100vh-60px)]"
                     >
-                        <div className="border-t border-border bg-background">
-                            <nav className="mx-auto max-w-7xl px-4 py-4 sm:px-6">
-                                <ul className="flex flex-col gap-1">
-                                    {NAV_ITEMS.map((item) => (
-                                        <li key={item.label}>
-                                            {item.type === "link" ? (
-                                                <Link
-                                                    href={item.href}
-                                                    onClick={() => setMobileOpen(false)}
-                                                    className="block rounded-md px-3 py-3 text-base font-medium text-foreground"
-                                                >
-                                                    {item.label}
-                                                </Link>
-                                            ) : (
-                                                <MobileAccordion item={item} onNavigate={() => setMobileOpen(false)} />
-                                            )}
-                                        </li>
-                                    ))}
-                                </ul>
-                                <div className="mt-4 flex flex-col gap-4 border-t border-border pt-4">
-                                    <Link
-                                        href="#demo"
-                                        onClick={() => setMobileOpen(false)}
-                                        className="rounded-full border border-border px-3 py-3 w-full text-center text-sm font-bold text-foreground hover:bg-accent transition-colors"
-                                    >
-                                        Demo
-                                    </Link>
-                                    <Button
-                                        className="rounded-full bg-foreground px-4 h-12 text-center text-sm font-bold text-background transition-all hover:bg-foreground/90 shadow-none"
-                                    >
-                                        Request Consultation
-                                    </Button>
-                                </div>
-                            </nav>
-                        </div>
+                        <nav className="container mx-auto px-4 py-8">
+                            <ul className="flex flex-col gap-2">
+                                {NAV_ITEMS.map((item) => (
+                                    <li key={item.label}>
+                                        {item.type === "link" ? (
+                                            <Link
+                                                href={item.href}
+                                                onClick={() => setMobileOpen(false)}
+                                                className="block rounded-lg py-4 text-xl font-medium text-zinc-200 hover:text-white hover:bg-zinc-900 transition-all border-b border-zinc-900"
+                                            >
+                                                {item.label}
+                                            </Link>
+                                        ) : (
+                                            <MobileAccordion item={item} onNavigate={() => setMobileOpen(false)} />
+                                        )}
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className="mt-8 flex flex-col gap-4">
+                                <Link
+                                    href="#demo"
+                                    onClick={() => setMobileOpen(false)}
+                                    className="rounded-full border border-zinc-800 px-3 py-3 w-full text-center text-sm font-bold text-white hover:bg-zinc-900 transition-colors"
+                                >
+                                    Demo
+                                </Link>
+                                <Button
+                                    className="rounded-full bg-white px-4 h-12 text-center text-sm font-bold text-black transition-all hover:bg-zinc-200 shadow-none"
+                                >
+                                    Request Consultation
+                                </Button>
+                            </div>
+                        </nav>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -396,17 +390,17 @@ function DropdownLink({ item }: { item: SubItem }) {
         <Link
             href={item.href}
             role="menuitem"
-            className="group flex items-start gap-3 rounded-lg p-3 transition-colors hover:bg-accent"
+            className="group flex items-start gap-4 rounded-xl p-4 transition-all duration-300 hover:bg-zinc-900 border border-transparent hover:border-zinc-800"
         >
             {Icon && (
-                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-muted text-foreground transition-colors group-hover:bg-foreground group-hover:text-background">
-                    <Icon className="h-4 w-4" />
+                <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-400 transition-all group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-500">
+                    <Icon className="h-5 w-5" />
                 </span>
             )}
-            <span className="flex flex-col">
-                <span className="text-sm font-medium leading-none text-foreground">{item.label}</span>
+            <span className="flex flex-col gap-1">
+                <span className="text-sm font-semibold text-zinc-200 group-hover:text-white transition-colors">{item.label}</span>
                 {item.description && (
-                    <span className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{item.description}</span>
+                    <span className="text-xs leading-relaxed text-zinc-500 group-hover:text-zinc-400 transition-colors">{item.description}</span>
                 )}
             </span>
         </Link>
@@ -422,15 +416,15 @@ function MobileAccordion({
 }) {
     const [open, setOpen] = React.useState(false)
     return (
-        <div className="border-b border-border/60 last:border-b-0">
+        <div className="border-b border-zinc-900 overflow-hidden">
             <button
                 type="button"
                 onClick={() => setOpen((v) => !v)}
                 aria-expanded={open}
-                className="flex w-full items-center justify-between rounded-md px-3 py-3 text-base font-medium text-foreground focus:outline-none"
+                className="flex w-full items-center justify-between py-5 text-xl font-medium text-zinc-200 focus:outline-none"
             >
                 {item.label}
-                <ChevronDown className={cn("h-4 w-4 transition-transform", open && "rotate-180")} />
+                <ChevronDown className={cn("h-5 w-5 transition-transform duration-300 text-zinc-500", open && "rotate-180 text-white")} />
             </button>
             <AnimatePresence initial={false}>
                 {open && (
@@ -438,16 +432,15 @@ function MobileAccordion({
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                        className="overflow-hidden"
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        <ul className="flex flex-col gap-0.5 pb-2 pl-3">
+                        <ul className="flex flex-col bg-zinc-950/50 pb-4">
                             {item.items.map((sub) => (
                                 <li key={sub.label}>
                                     <Link
                                         href={sub.href}
                                         onClick={onNavigate}
-                                        className="block rounded-md px-3 py-2.5 text-sm text-foreground/80 hover:bg-accent hover:text-foreground"
+                                        className="block py-3.5 text-lg text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors"
                                     >
                                         {sub.label}
                                     </Link>

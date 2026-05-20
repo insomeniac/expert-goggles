@@ -1,3 +1,17 @@
+# DESIGN SYSTEM & BRANDING
+## Color Palette (Premium Infrastructure)
+- **Primary Black**: `#000000` (Deep levels, background depth)
+- **Pure White**: `#FFFFFF` (Clear typography, high contrast)
+- **Neutral Gray**: `#64748B` (Sub-text, secondary information)
+- **Metallic Silver**: `#E2E8F0` to `#94A3B8` (Borders, divider, subtle gradients, and accents)
+- **Accent Blue**: `#2563EB` (Functional accents like CheckIcons/Status)
+
+## Visual Direction
+- **Theme**: Unified Dark Experience with High-Contrast Typography.
+- **Aesthetic**: Minimalist, Border-focused (Silver lines), Glassmorphism (Subtle), Zero "Alay" animations.
+
+---
+
 Navbar 
 Left
 Logo Exa Commerce

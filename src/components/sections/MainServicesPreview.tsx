@@ -15,85 +15,92 @@ import { Button } from "@/components/ui/button";
 const services = [
     {
         title: "Commerce Website Development",
-        description: "Website modern dengan premium UI/UX dan SEO-ready architecture.",
-        icon: <Globe className="w-6 h-6" />,
-        color: "bg-blue-500/10 text-blue-600",
+        description: "Website modern dengan premium UI/UX, mobile-first architecture, dan SEO-ready structure untuk conversion maksimal.",
+        icon: <Globe className="w-5 h-5 sm:w-6 sm:h-6" />,
     },
     {
         title: "SEO & Growth Management",
-        description: "Meningkatkan organic visibility dan digital growth melalui strategi SEO end-to-end.",
-        icon: <Search className="w-6 h-6" />,
-        color: "bg-emerald-500/10 text-emerald-600",
+        description: "Meningkatkan organic visibility dan digital growth melalui strategi SEO end-to-end yang komprehensif.",
+        icon: <Search className="w-5 h-5 sm:w-6 sm:h-6" />,
     },
     {
         title: "SEM & Acquisition System",
-        description: "Performance advertising untuk acquisition dan conversion dengan ROI terukur.",
-        icon: <Megaphone className="w-6 h-6" />,
-        color: "bg-orange-500/10 text-orange-600",
+        description: "Performance advertising untuk acquisition dan conversion dengan ROI terukur dan optimasi berkelanjutan.",
+        icon: <Megaphone className="w-5 h-5 sm:w-6 sm:h-6" />,
     },
     {
         title: "Smart POS Ecosystem",
-        description: "Sistem POS modern untuk operasional yang lebih efisien dan terintegrasi offline-to-online.",
-        icon: <Store className="w-6 h-6" />,
-        color: "bg-purple-500/10 text-purple-600",
+        description: "Sistem POS modern untuk operasional yang lebih efisien, terintegrasi, dan siap mendukung multi-branch business.",
+        icon: <Store className="w-5 h-5 sm:w-6 sm:h-6" />,
     },
     {
         title: "AI Commerce System",
-        description: "AI-powered ecosystem untuk automation dan business intelligence yang cerdas.",
-        icon: <BrainCircuit className="w-6 h-6" />,
-        color: "bg-primary/10 text-primary",
+        description: "AI-powered ecosystem untuk automation dan business intelligence guna mendukung pengambilan keputusan yang lebih cerdas.",
+        icon: <BrainCircuit className="w-5 h-5 sm:w-6 sm:h-6" />,
     },
 ];
 
 export function MainServicesPreview() {
     return (
-        <section id="services" className="py-24">
+        <section id="services" className="py-24 bg-black text-white relative overflow-hidden">
+            {/* Subtle Silver Glow top border */}
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
+
             <div className="container mx-auto px-4 md:px-6">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-                    <div className="max-w-2xl">
-                        <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-                            Complete Commerce <br /> Growth Ecosystem
+                <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-20">
+                    <div className="max-w-3xl space-y-6">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 text-xs font-semibold uppercase tracking-widest">
+                            Comprehensive Solution
+                        </div>
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1]">
+                            Complete Commerce <br className="hidden sm:block" /> Growth Ecosystem
                         </h2>
-                        <p className="text-lg text-muted-foreground">
-                            Kami menggabungkan teknologi dan strategi untuk membantu bisnis Anda berkembang lebih cepat di setiap lini.
+                        <p className="text-lg text-zinc-400 max-w-xl leading-relaxed">
+                            Kami menggabungkan teknologi modern, AI infrastructure, dan growth strategy untuk membantu bisnis Anda berkembang lebih cepat di setiap lini digital.
                         </p>
                     </div>
-                    <Button variant="ghost" className="group">
-                        See all services
-                        <ArrowUpRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                    </Button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
                     {services.map((service, i) => (
-                        <Card key={i} className="group hover:shadow-xl transition-all duration-300 border-border/50 hover:border-primary/50 relative overflow-hidden">
-                            <div className={`absolute top-0 right-0 w-24 h-24 blur-3xl opacity-0 group-hover:opacity-20 transition-opacity ${service.color.split(' ')[0]}`} />
-                            <CardHeader>
-                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110 ${service.color}`}>
+                        <div
+                            key={i}
+                            className="group p-8 border border-zinc-900 bg-zinc-950/40 hover:bg-zinc-900/60 transition-all duration-500 relative overflow-hidden cursor-default"
+                        >
+                            {/* Hover Accent Line */}
+                            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                            <div className="relative z-10">
+                                <div className="w-12 h-12 rounded-full border border-zinc-800 flex items-center justify-center mb-10 text-zinc-400 group-hover:text-white group-hover:border-zinc-500 transition-all duration-500">
                                     {service.icon}
                                 </div>
-                                <CardTitle className="text-xl group-hover:text-primary transition-colors">{service.title}</CardTitle>
-                                <CardDescription className="text-base pt-2">
+                                <h3 className="text-xl font-semibold mb-4 text-zinc-100 group-hover:text-white transition-colors">
+                                    {service.title}
+                                </h3>
+                                <p className="text-sm sm:text-base text-zinc-500 group-hover:text-zinc-400 leading-relaxed min-h-[80px]">
                                     {service.description}
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <Button variant="link" className="px-0 text-primary group/btn">
-                                    Learn more <ArrowUpRight className="ml-1 w-3 h-3 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
-                                </Button>
-                            </CardContent>
-                        </Card>
+                                </p>
+                                <div className="mt-8 pt-8 border-t border-zinc-900 flex items-center gap-2 text-xs font-bold text-zinc-600 group-hover:text-blue-500 transition-colors">
+                                    Exploration Service <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                </div>
+                            </div>
+                        </div>
                     ))}
 
                     {/* Growth Card - Special appearance */}
-                    <Card className="bg-primary text-primary-foreground group hover:rotate-1 transition-transform relative overflow-hidden flex flex-col justify-center p-8 border-none">
-                        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%)] bg-[length:250%_250%] animate-[shimmer_3s_infinite]" />
-                        <h3 className="text-2xl font-bold mb-4">Ready to accelerate your business?</h3>
-                        <p className="opacity-90 mb-8">Dapatkan konsultasi gratis mengenai growth strategy bisnis Anda bersama tim ahli kami.</p>
-                        <Button variant="secondary" className="w-full rounded-full font-bold">
+                    <div className="group p-8 bg-zinc-100 text-black flex flex-col justify-between relative overflow-hidden min-h-[300px]">
+                        <div className="relative z-10">
+                            <h3 className="text-2xl sm:text-3xl font-bold tracking-tight mb-4 leading-tight">
+                                Ready to accelerate your business growth?
+                            </h3>
+                            <p className="text-sm sm:text-base text-zinc-600 mb-8">
+                                Bangun infrastruktur commerce modern bersama tim ahli kami sekarang.
+                            </p>
+                        </div>
+                        <Button className="w-full h-12 sm:h-14 rounded-full bg-black text-white hover:bg-zinc-800 transition-all mt-auto font-bold uppercase tracking-wider text-xs">
                             Schedule Discussion
                         </Button>
-                    </Card>
+                    </div>
                 </div>
             </div>
         </section>

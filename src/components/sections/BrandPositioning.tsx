@@ -5,14 +5,17 @@ import { CheckCircle2, XCircle } from "lucide-react";
 
 export function BrandPositioning() {
     return (
-        <section className="min-h-[100dvh] flex items-center py-12 lg:py-0 bg-white dark:bg-black overflow-hidden relative">
-            <div className="container mx-auto px-4 md:px-6 py-8">
+        <section className="min-h-[100dvh] flex items-center py-12 lg:py-0 bg-black text-white overflow-hidden relative">
+            {/* Subtle Gradient background */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(24,24,27,1)_0%,rgba(0,0,0,1)_100%)] opacity-50" />
+
+            <div className="container mx-auto px-4 md:px-6 py-8 relative z-10">
                 {/* Header */}
                 <div className="max-w-4xl mx-auto text-center mb-10 space-y-3">
-                    <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-slate-900 dark:text-white">
+                    <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white">
                         Commerce Has Evolved Beyond Traditional Systems
                     </h2>
-                    <p className="text-base md:text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto">
+                    <p className="text-base md:text-lg text-zinc-500 leading-relaxed max-w-2xl mx-auto">
                         Di era commerce modern, standar keberhasilan telah berubah dari sekadar operasional menjadi integrasi pertumbuhan.
                     </p>
                 </div>
@@ -24,7 +27,7 @@ export function BrandPositioning() {
                     <div className="flex flex-col items-center">
                         <div className="flex flex-col items-center gap-2 mb-8">
                             <XCircle size={28} className="text-red-500" />
-                            <h3 className="text-xl font-semibold tracking-tight text-slate-900 dark:text-white">
+                            <h3 className="text-xl font-semibold tracking-tight text-white">
                                 Traditional Systems
                             </h3>
                         </div>
@@ -39,9 +42,9 @@ export function BrandPositioning() {
                             ].map((item, i) => (
                                 <div key={i} className="flex gap-4">
                                     <div className="mt-2 shrink-0">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-red-400" />
+                                        <div className="w-1.5 h-1.5 rounded-full bg-red-500/50" />
                                     </div>
-                                    <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed" dangerouslySetInnerHTML={{ __html: item.desc }} />
+                                    <p className="text-sm sm:text-base text-zinc-400 leading-relaxed" dangerouslySetInnerHTML={{ __html: item.desc }} />
                                 </div>
                             ))}
                         </div>
@@ -50,8 +53,8 @@ export function BrandPositioning() {
                     {/* Exa Commerce - The Solution */}
                     <div className="flex flex-col items-center">
                         <div className="flex flex-col items-center gap-2 mb-8">
-                            <CheckCircle2 size={28} className="text-blue-600" />
-                            <h3 className="text-xl font-semibold tracking-tight text-slate-900 dark:text-white text-center">
+                            <CheckCircle2 size={28} className="text-blue-500" />
+                            <h3 className="text-xl font-semibold tracking-tight text-white text-center">
                                 Exa Commerce Infrastructure
                             </h3>
                         </div>
@@ -66,9 +69,9 @@ export function BrandPositioning() {
                             ].map((item, i) => (
                                 <div key={i} className="flex gap-4">
                                     <div className="mt-2 shrink-0">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500/50" />
                                     </div>
-                                    <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed" dangerouslySetInnerHTML={{ __html: item.desc }} />
+                                    <p className="text-sm sm:text-base text-zinc-400 leading-relaxed" dangerouslySetInnerHTML={{ __html: item.desc }} />
                                 </div>
                             ))}
                         </div>
